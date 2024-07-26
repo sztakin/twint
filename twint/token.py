@@ -22,7 +22,7 @@ class Token:
         self.config = config
         self._retries = 5
         self._timeout = 10
-        self.url = 'https://twitter.com'
+        self.url = 'https://x.com'
 
     def _request(self):
         for attempt in range(self._retries + 1):
@@ -76,11 +76,11 @@ class Token:
                 'content-type': 'application/x-www-form-urlencoded',
                 'accept': '*/*',
                 'sec-gpc': '1',
-                'origin': 'https://twitter.com',
+                'origin': 'https://x.com',
                 'sec-fetch-site': 'same-site',
                 'sec-fetch-mode': 'cors',
                 'sec-fetch-dest': 'empty',
-                'referer': 'https://twitter.com/',
+                'referer': 'https://x.com/',
                 'accept-language': 'en-US',
             }
             self._session.headers.update(headers)

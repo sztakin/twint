@@ -132,7 +132,6 @@ async def RequestUrl(config, init):
             logme.debug(__name__ + ':RequestUrl:Favorites')
             _url = await url.Favorites(config.Username, init)
         _serialQuery = _url
-
     response = await Request(_url, params=params, connector=_connector, headers=_headers)
 
     if config.Debug:
@@ -159,7 +158,12 @@ def ForceNewTorIdentity(config):
 async def Request(_url, connector=None, params=None, headers=None):
     logme.debug(__name__ + ':Request:Connector')
     async with aiohttp.ClientSession(connector=connector, headers=headers) as session:
-        return await Response(session, _url, params)
+        response = await Response(session, _url, params)
+        print("SENT REQUEST", _url, params, headers)
+        print("RESPONSE", response)
+        print()
+        return response
+        #return await Response(session, _url, params)
 
 
 async def Response(session, _url, params=None):
@@ -267,15 +271,15 @@ async def Multi(feed, config, conn):
                 if config.Favorites or config.Profile_full:
                     logme.debug(__name__ + ':Multi:Favorites-profileFull')
                     link = tweet.find("a")["href"]
-                    url = f"https://twitter.com{link}&lang=en"
+                    url = f"https://x.com{link}&lang=en"
                 elif config.User_full:
                     logme.debug(__name__ + ':Multi:userFull')
                     username = tweet.find("a")["name"]
-                    url = f"http://twitter.com/{username}?lang=en"
+                    url = f"http://x.com/{username}?lang=en"
                 else:
                     logme.debug(__name__ + ':Multi:else-url')
                     link = tweet.find("a", "tweet-timestamp js-permalink js-nav js-tooltip")["href"]
-                    url = f"https://twitter.com{link}?lang=en"
+                    url = f"https://x.com{link}?lang=en"
 
                 if config.User_full:
                     logme.debug(__name__ + ':Multi:user-full-Run')

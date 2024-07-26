@@ -5,8 +5,9 @@ import logging as logme
 from urllib.parse import urlencode
 from urllib.parse import quote
 
-mobile = "https://mobile.twitter.com"
-base = "https://api.twitter.com/2/search/adaptive.json"
+mobile = "https://mobile.x.com"
+#base = "https://api.twitter.com/2/search/adaptive.json"
+base = "https://api.twitter.com/1.1/search/tweets.json"
 
 
 def _sanitizeQuery(_url, params):
